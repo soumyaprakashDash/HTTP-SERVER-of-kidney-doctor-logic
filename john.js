@@ -1,12 +1,8 @@
-//# HTTP-SERVER-of-kidney-doctor-logic
-
-//1.GET - User can  check how many kidneys they have and their health.
-//2.POST- User can add a new kidney 
-//3.PUT-User casn replace a kidney,make it healthy 
-//4.DELETE User can remove a kidney
 
 const express = require ('express');
 const app = express ();
+app.use (express.json());
+
 
  const users =[{
     name:"john",
@@ -15,7 +11,6 @@ const app = express ();
     }]
  }];
 
- app.use (express.json());
 
 app.get ('/',function (req,res){
     const johnKidneys = users[0].kidneys;
@@ -33,6 +28,7 @@ app.get ('/',function (req,res){
         numberOfUnhealthyKidneys
     })
 })
+
  
 app.post ("/",function(req,res){
     const isHealthy = req.body.isHealthy;
@@ -43,6 +39,7 @@ app.post ("/",function(req,res){
         msg:"Done!"
     })
 })
+
 
 app.put("/",function(req,res){
     for (let i=0; i<users[0].kidneys.length;i++){
@@ -66,4 +63,5 @@ app.delete ("/",function(req,res){
         msg: "You have good kidneys bro !"
     })
 })
+
 app.listen (3000);
